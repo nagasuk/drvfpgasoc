@@ -1,0 +1,2 @@
+KERNEL=="fpgasoc", GROUP="fpga", MODE="0664"
+KERNEL=="fpgasoc[0-9]", GROUP="fpga", MODE="0664"

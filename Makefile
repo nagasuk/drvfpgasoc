@@ -14,6 +14,7 @@ target_kern_ver ?= $(shell uname -r)
 MODULE_INST_PATH := lib/modules/$(target_kern_ver)/extramodules
 MODULE_CONF_INST_PATH := etc/modules-load.d
 INCLUDE_INST_PATH := usr/include
+UDEV_RULE_INST_PATH := etc/udev/rules.d
 
 .PHONY: all
 all:
@@ -22,8 +23,9 @@ all:
 .PHONY: install
 install: all
 	install -v -D -t $(DESTDIR)/$(prefix)/$(MODULE_INST_PATH)/ $(obj-m:.o=.ko)
-	install -v -D -t $(DESTDIR)/$(prefix)/$(MODULE_CONF_INST_PATH)/ conf/$(obj-m:.o=.conf)
 	install -v -D -t $(DESTDIR)/$(prefix)/$(INCLUDE_INST_PATH) include/*
+	install -v -D -t $(DESTDIR)/$(prefix)/$(MODULE_CONF_INST_PATH)/ misc/$(obj-m:.o=.conf)
+	install -v -D -t $(DESTDIR)/$(prefix)/$(UDEV_RULE_INST_PATH)/ misc/81-$(obj-m:.o=.rules)
 
 .PHONY: clean
 clean:
