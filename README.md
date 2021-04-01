@@ -28,3 +28,7 @@ Requirement
 * make
 * Linux kernel source
 
+License
+-------
+Please see `LICENSE.md` file for details.
+
